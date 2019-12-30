@@ -42,4 +42,31 @@ public class Interval extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    void calculateLength() {
+        try {
+            int length = Integer.parseInt(start) - Integer.parseInt(end);
+            setLength(String.valueOf(length));
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("잘못된 숫자 형식 에러");
+        }
+    }
+
+    void calculateEnd() {
+        try {
+            int end = Integer.parseInt(start) + Integer.parseInt(length);
+            setEnd(String.valueOf(end));
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("잘못된 숫자 형식 에러");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Interval{" +
+                "start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", length='" + length + '\'' +
+                '}';
+    }
 }
